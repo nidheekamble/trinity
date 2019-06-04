@@ -1,11 +1,11 @@
 import os
-from flask import Flask, flask, request, url_for
+from flask import Flask, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 app = Flask(__name__)
 
-app.config['SECRET KEY'] = 'adnoaea48t92928qnrqi'
+app.config['SECRET_KEY'] = '5791628cb0b12ce6c676dfde280ba246'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)

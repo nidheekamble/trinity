@@ -9,7 +9,14 @@ class User(db.Model, UserMixin):
 	__tablename__ = 'user'
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(30), nullable = False)
-	email = db.Column(db.Email(50), unique = True, nullable = False)
+	email = db.Column(db.String(50), unique = True, nullable = False)
 
 	def __repr__(self):
 		return f"User('{self.email}')"
+
+class Organizer(db.Model, UserMixin):
+	__tablename__ = 'organizer'
+	id = db.Column(db.Integer, prmiary_key = True)
+	name = db.Column(db.String(30), nullable = False)
+	email = db.Column(db.String(30), unique = True, nullable = False)
+	oType = db.Column(db.String(30), unique = False, nullable=False)
