@@ -17,32 +17,31 @@
     <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css" media="screen,projection"/>
 
     {% if title %}
-        <title>#memesForLife {{ title }}</title>
+        <title>ManagEvent{{ title }}</title>
     {% else %}
-        <title>#memesForLife </title>
+        <title>ManagEvent </title>
     {% endif %}
 </head>
 <body class = "content">
     <header class="site-header">
       <nav class="grey darken-4 navbar navbar-expand-md navbar-dark">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/"><h4>#mForL</h4></a>
+          <a class="navbar-brand mr-4" href="/"><h4>managEvent</h4></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="topnav collapse navbar-collapse" id="navbarToggle">home
+          <div class="topnav collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = "pink-text darken-4"><b>Explore</b></a><span>
-              <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Saved</b></a><span>
+              <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = "pink-text darken-4"><b>Home</b></a><span>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Creations</b></a><span>
-                <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Logout</b></a><span>
-              {% else %}
-                <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Login</b></a><span>
+              {% if current_user.type == 'user' %}
                 <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Explore</b></a><span>
+                <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Shortlist</b></a><span>
+              {% else %}
+                <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Account</b></a><span>
+                <a class="hoverable nav-item nav-link" href="{{ url_for('home') }}"><span class = 'pink-text darken-4'><b>Logout</b></a><span>
               {% endif %}
             </div>
           </div>
@@ -82,11 +81,8 @@
     {% endif %}
 
     <div class = "footer">
-      <h4 class ="pink-text darken-4"><b>ideate.work</b></h4>
-      <h6><a href="{{ url_for('home') }}" class = "amber-text lighten-4"></i>ABOUT US   •</a>
-      <a href="{{ url_for('home') }}" class = "amber-text lighten-4"></i>MEET THE TEAM   •</a>
-      <a href="{{ url_for('home') }}" class = "amber-text lighten-4"></i>WHAT WE DO</a></h6>
-      <p class = "white-text">© 2019 Copyright: <b>memesForLife</b></p>
+      <h4 class ="pink-text darken-4"><b>blah blah</b></h4>
+      <p class = "white-text">© 2019 <b>forked from Trinity</b></p>
     </div>
 
 

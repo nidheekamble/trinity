@@ -16,9 +16,14 @@ class UserForm(FlaskForm):
 			raise ValidationError('Email taken, enter a different one')
 
 class OrgForm(FlaskForm):
-	name = StringField('Name', validators = [DataRequired(), Lenght(max=30)])
+	name = StringField('Name', validators = [DataRequired(), Length(max=30)])
 	email = StringField('Email', validators = [DataRequired(), Email()])
 	types = [('0','Parties'), ('1', 'Wedding'), ('2', 'Corporate')]
-	oType = SelectField('Type', choices = types, validators = [Required()])
+	kind = SelectField('Type', choices = types, validators = [Required()])
 	submit = SubmitField('Make Me Discoverable')
+
+	def validateEmail(self, Email):
+		user = User.query.filter_by(email=email.data).first()
+		if user:
+			raise ValidationError('Email taken, enter a different one')
 

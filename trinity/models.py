@@ -10,13 +10,18 @@ class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(30), nullable = False)
 	email = db.Column(db.String(50), unique = True, nullable = False)
+	type= db.Column(db.String(20), nullable=False)
 
 	def __repr__(self):
-		return f"User('{self.email}')"
+		return f"User('{self.email}', '{self.type}')"
 
 class Organizer(db.Model, UserMixin):
 	__tablename__ = 'organizer'
-	id = db.Column(db.Integer, prmiary_key = True)
+	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(30), nullable = False)
 	email = db.Column(db.String(30), unique = True, nullable = False)
-	oType = db.Column(db.String(30), unique = False, nullable=False)
+	kind = db.Column(db.String(30), unique = False, nullable=False)
+	type= db.Column(db.String(20), nullable=False)
+
+	def __repr__(self):
+		return f"Organizer('{self.email}', '{self.kind}', '{self.type}')"
