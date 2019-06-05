@@ -3,6 +3,7 @@
 <title>Home</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 <link rel="shortcut icon" href="static/logo.ico">
@@ -13,14 +14,14 @@
 </head>
 
 <body>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 
 	<div class="container valign center-align">
-	    <h1 class = "white-text"><b>ManagEvent</b></h1>
+		<i class="large material-icons"> call_split </i><h1 class = "black-text"><b>ManagEvent</b></h1>
 		<div class = "row">
-			<h3><p><a href="{{ url_for('regOrg') }}" class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text">I organise events</a>
-			<a href="{{ url_for('login') }}" class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text">Login</a>
-			<a href="{{ url_for('regUser') }}" class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text">I want my events organised</a></p>
+			<h3><p><a href="{{ url_for('regOrg') }}" class="button-border hoverable waves-effect waves-light btn-large amber accent-2 black-text"><b>I organise events</b></a>
+			<a href="{{ url_for('login') }}" class="button-border hoverable waves-effect waves-light btn-large amber accent-2 black-text">Login</a>
+			<a href="{{ url_for('regUser') }}" class="button-border hoverable waves-effect waves-light btn-large amber accent-2 black-text">I want my events <b>organised</b></a></p>
 			</a></h3>
 		</div>
 	</div>
@@ -28,8 +29,12 @@
 	</header>
 
 	<div class = "footer">
-		<h4 class ="pink-text darken-4"><b>blah blah</b></h4>
-		<p class = "white-text">© 2019 <b>Forked from trinity</b></p>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<p class = "black-text">© June 2019 <b>Forked from trinity</b></p>
 	</div>
 
 </body>
