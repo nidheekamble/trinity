@@ -90,35 +90,6 @@
                 <hr><br>
 
                 <div class="form-group">
-                    <h5 class = "pink-text darken-4">I'm passionate about working with:</h5>
-                    {% if form.user_interest1.errors %}
-                        {{ form.user_interest1(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.user_interest1.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.user_interest1(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-
-                <div class="form-group">
-                    {% if form.user_interest2.errors %}
-                        {{ form.user_interest2(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.user_interest2.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.user_interest2(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-
-                <hr><br>
-
-                <div class="form-group">
                     <h5 class = "pink-text darken-4">About</h5>
                     {% if form.about.errors %}
                         {{ form.about(class="form-control form-control-lg is-invalid") }}
