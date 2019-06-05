@@ -1,11 +1,61 @@
 {% extends "layout.html" %}
 {% block content %}
+<head>
+	<script data-require="jquery@1.12.4" data-semver="1.12.4" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
+</head>
+
+
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
+	var elems = document.querySelectorAll('.datepicker');
+	var instances = M.Datepicker.init(elems, options);
+	});
+
+	document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.timepicker');
+    var instances = M.Timepicker.init(elems, options);
   });
 </script>
-<input type="text" class="datepicker">
-<input type="text" class="timepicker">
+
+<div>
+	<div class = "filter right-align">
+		<h3 class="card"><span class="black-text cyan center-align"><b>FILTER</b> </span></h2>
+		<div class = "amber lighten-1 col s3 hoverable">
+			<h5><b><span class = "black-text center-align"> Date </span></b></h5>
+			<input type="date" class="datepicker">
+		</div>
+		<hr>
+		<div class = "amber lighten-1 col s3 hoverable">
+			<h6>
+			<span class = "black-text center-align">
+			Halls <br>
+			Lawns <br>
+			Villas <br>
+			</span>
+			</h6>
+		</div>
+		<hr>
+		<div class = "amber lighten-1 col s3 hoverable">
+			<span class = "black-text center-align"><b> Range </b></span>
+		</div>
+		<hr>
+		<div class = "amber lighten-1 col s3 hoverable">
+			<h5><span class = "black-text center-align"><b>Another Filter </b></span></h5>
+		</div>
+	</div>
+
+	<div class = "col s9">
+		row wala
+	</div>
+</div>
+
+<div>
+	blah blah
+</div>
+
+<script src="script.js"></script>
+
+
 {% endblock content %}

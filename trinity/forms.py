@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, IntegerField, RadioField, BooleanField, PasswordField, SubmitField, TextAreaField, SelectField, HiddenField
+from wtforms import StringField, IntegerField, RadioField, BooleanField, PasswordField, SubmitField, TextAreaField, SelectField, HiddenField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Required, NumberRange, ValidationError
 from trinity.models import User
 
@@ -53,3 +53,7 @@ class UpdateDetails(FlaskForm):
 		user = User.query.filter_by(email=email.data).first()
 		if user:
 			raise ValidationError('Email taken, enter a different one')
+
+class FilterForm(FlaskForm):
+	dates = DateField(validators=[DataRequired()])
+	venue = StringField('Venue', validators = [DataRequired()])

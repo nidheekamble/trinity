@@ -4,7 +4,7 @@ import requests
 import hashlib
 from trinity import app, db
 from trinity.models import User, Organizer
-from trinity.forms import UserForm, OrgForm, UpdateDetails, LoginForm
+from trinity.forms import UserForm, OrgForm, UpdateDetails, LoginForm, FilterForm
 from sqlalchemy import or_, and_
 from sqlalchemy.orm import Session
 from flask import Flask, session, render_template, url_for, flash, redirect, request, send_from_directory
@@ -14,7 +14,7 @@ from PIL import Image
 @app.route("/")
 @app.route("/home", methods = ['GET', 'POST'])
 def home():
-	return render_template('home.html')
+	return render_template('home.html', title='Home')
 
 @app.route("/organizer", methods = ['GET', 'POST'])
 def regOrg():
@@ -47,13 +47,14 @@ def regOrg():
 			organizer.photo1 = photo_file
 			photo3 = url_for('static', filename='organizer/' + organizer.photo3)
 
+		db.session.add(organizer)
 		db.session.commit()
 		print(organizer)
 
 		return redirect(url_for('login'))
 	print('form not validated')
 	print(form.errors)
-	return render_template('organizer.html', form=form)
+	return render_template('organizer.html', title='Organizer', form=form)
 
 def save_photo(form_photo):
 	random_hex = secrets.token_hex(8)
@@ -79,8 +80,9 @@ def regUser():
 		db.session.add(user)
 		db.session.commit()
 		print(user)
+
 		return redirect(url_for('find'))
-	return render_template('user.html', form=form)
+	return render_template('user.html', title='User', form=form)
 
 @app.route("/login", methods = ['GET','POST'])
 def login():
@@ -98,20 +100,23 @@ def login():
 		if (organizer and (organizer.password==now_hash)):
 			login_user(organizer)
 			print("hash correct")
-			redirect(url_for('account'))
+			return redirect(url_for('account'))
 
 		else:
 			print('Nahin hua')
 			flash('Login Unsuccessful. Please check email and password', 'danger')
 
-	return render_template('login.html', form=form)
+	return render_template('login.html', title='Login', form=form)
 
 
 @app.route("/find", methods = ['GET', 'POST'])
 def find():
-	return render_template('find.html)')
+	form = FilterForm()
+	
+	return render_template('find.html', title='Find', form=form)
 
 @app.route("/account", methods = ['GET', 'POST'])
+@login_required
 def account():
 	form = UpdateDetails()
 	organizer = Organizer.query.filter_by(id=current_user.id).first()
@@ -136,4 +141,10 @@ def account():
 		db.session.add(organizer)
 		db.session.commit()
 		print(organizer)
-	return render_template("account.html")
+		flash('Your account has been updated!', 'success')
+	return render_template("account.html", title='account', form=form)
+
+@app.route("/logout")
+def logout():
+	logout_user()
+	return redirect(url_for('home'))
