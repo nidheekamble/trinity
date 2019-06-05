@@ -21,10 +21,11 @@ class Organizer(db.Model, UserMixin):
 	name = db.Column(db.String(30), nullable = False)
 	email = db.Column(db.String(30), unique = True, nullable = False)
 	kind = db.Column(db.String(30), unique = False, nullable=False)
-	type= db.Column(db.String(20), nullable=False)
+	type = db.Column(db.String(20), nullable=False)
 	photo1 = db.Column(db.String(20), unique = False, default = 'default.jpg' , nullable= True )
 	photo2 = db.Column(db.String(20), unique = False, default = 'default.jpg' , nullable= True )
 	photo3 = db.Column(db.String(20), unique = False, default = 'default.jpg' , nullable= True )
+	password = db.Column(db.String(128), unique = False, nullable = False)
 
 	def __repr__(self):
 		return f"Organizer('{self.email}', '{self.kind}', '{self.type}')"

@@ -32,7 +32,7 @@ def regOrg():
 		organizer.type = 'organizer'
 		db.session.add(organizer)
 		db.session.commit()
-		print("before pic"+organizer)
+		print("before pic")
 
 		if form.photo1.data:
 			photo_file = save_photo(form.photo1.data)
@@ -51,16 +51,21 @@ def regOrg():
 		print(organizer)
 
 		return redirect(url_for('login'))
+	print('form not validated')
+	print(form.errors)
 	return render_template('organizer.html', form=form)
 
 def save_photo(form_photo):
 	random_hex = secrets.token_hex(8)
 	_, f_ext = os.path.splitext(form_photo.filename)
 	photo_fn = random_hex + f_ext
-	photo_path = os.path.join(app.root_path, 'static\organizer', photo_fn)
+	## Don't use static\organizer, pass them as separate arguments
+	photo_path = os.path.join(app.root_path, 'static','organizer', photo_fn)
+	print('PHOTO TO BE SAVED:: ', photo_path)
 	output_size = (125, 125)
 	i = Image.open(form_photo)
 	i.thumbnail(output_size)
+	#this will fail if static/organizer folder doesn't exist
 	i.save(photo_path)
 	return photo_fn
 
