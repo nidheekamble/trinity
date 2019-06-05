@@ -1,3 +1,142 @@
-{% extends layout.html %}
+{% extends "layout.html" %}
 {% block content %}
+      <div class="row valign wrapper">
+        <div class="col s2">
+            <img class="circle responive-img account-img" src="{{ organizer.photo1 }}">
+            <img class="circle responive-img account-img" src="{{ organizer.photo2 }}">
+            <img class="circle responive-img account-img" src="{{ organizer.photo3 }}">
+        </div>
+        <div class="col s10">
+          <h3 class="account-heading amber-text"><b>Welcome,</b>{{ current_user.name }}<br>
+        </div>
+      </div>
+
+
+    <div class = "dim card transparent hoverable col s12">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <h4 class="pink-text darken-3"><b>Account Info</b></h4>
+                {{photo1}}
+
+                <div class="form-group">
+                    <h5 class = "pink-text darken-4">Is this username fine?</h5>
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <h5 class = "pink-text darken-4">Email</h5>
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <h5 class = "black-text">Kind</h5>
+                    {% if form.kind.errors %}
+                        {{ form.kind(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.kind.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.kind(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <hr><br>
+
+                <div class="form-group">
+                    <h5 class = "pink-text darken-4">Update your gallery</h5>
+                    {{ form.photo1(class="form-control-file") }}
+                    {% if form.photo1.errors %}
+                        {% for error in form.photo1.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ form.photo2(class="form-control-file") }}
+                    {% if form.photo2.errors %}
+                        {% for error in form.photo2.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ form.photo3(class="form-control-file") }}
+                    {% if form.photo3.errors %}
+                        {% for error in form.photo3.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <hr><br>
+
+                <div class="form-group">
+                    <h5 class = "pink-text darken-4">I'm passionate about working with:</h5>
+                    {% if form.user_interest1.errors %}
+                        {{ form.user_interest1(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.user_interest1.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.user_interest1(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {% if form.user_interest2.errors %}
+                        {{ form.user_interest2(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.user_interest2.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.user_interest2(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <hr><br>
+
+                <div class="form-group">
+                    <h5 class = "pink-text darken-4">About</h5>
+                    {% if form.about.errors %}
+                        {{ form.about(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.about.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.about(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }}
+            </div>
+        </form>
+    </div>
+    </div>
 {% endblock content %}

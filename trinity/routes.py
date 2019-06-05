@@ -27,9 +27,12 @@ def regOrg():
 			a = ord(char) #ASCII
 			s = s+a #sum of ASCIIs acts as the salt
 		hashed_password = (str)((hashlib.sha512((str(s).encode('utf-8'))+((form.password.data).encode('utf-8')))).hexdigest())
-
+	
 		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data, password = hashed_password)
 		organizer.type = 'organizer'
+		db.session.add(organizer)
+		db.session.commit()
+		print("before pic"+organizer)
 
 		if form.photo1.data:
 			photo_file = save_photo(form.photo1.data)
@@ -44,7 +47,6 @@ def regOrg():
 			organizer.photo1 = photo_file
 			photo3 = url_for('static', filename='organizer/' + organizer.photo3)
 
-		db.session.add(organizer)
 		db.session.commit()
 		print(organizer)
 
@@ -75,7 +77,7 @@ def regUser():
 		return redirect(url_for('find'))
 	return render_template('user.html', form=form)
 
-@app.route("/login", methods = ['GET', 'POST'])
+@app.route("/login", methods = ['GET','POST'])
 def login():
 	form = LoginForm(request.form)
 
@@ -104,7 +106,7 @@ def login():
 def find():
 	return render_template('find.html)')
 
-@app.route("/account")
+@app.route("/account", methods = ['GET', 'POST'])
 def account():
 	form = UpdateDetails()
 	organizer = Organizer.query.filter_by(id=current_user.id).first()
