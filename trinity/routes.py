@@ -9,6 +9,8 @@ from sqlalchemy import or_, and_
 from sqlalchemy.orm import Session
 from flask import Flask, session, render_template, url_for, flash, redirect, request, send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_bootstrap import Bootstrap
+from flask_datepicker import datepicker
 from PIL import Image
 
 @app.route("/")
@@ -75,7 +77,7 @@ def save_photo(form_photo):
 def regUser():
 	form = UserForm()
 	if form.validate_on_submit():
-		user = User(email=form.email.data, name=form.name.data)
+		user = User(email=form.email.data, name=form.name.data, date='')
 		user.type = 'user'
 		db.session.add(user)
 		db.session.commit()
@@ -89,7 +91,7 @@ def login():
 	form = LoginForm(request.form)
 
 	if form.validate_on_submit():
-		organizer = Organizer.query.filter_by(email=form.email.data).first()
+		organizer = Organizer.query.filter_by(id=current_user.id).first()
 		pw = (form.password.data)
 		s = 0
 		for char in pw:
@@ -112,8 +114,21 @@ def login():
 @app.route("/find", methods = ['GET', 'POST'])
 def find():
 	form = FilterForm()
-	
+	if form.validate_on_submit():
+		date = form.date.data
+		#venue = form.venue.data
+		print(date)
+		return redirect(url_for('filter'))
+	else:
+		print('Not validated')
+
 	return render_template('find.html', title='Find', form=form)
+
+@app.route("/filter", methods = ['GET', 'POST'])
+def filter():
+	form = FilterForm()
+	print('in filter')
+	return render_template('home.html')
 
 @app.route("/account", methods = ['GET', 'POST'])
 @login_required

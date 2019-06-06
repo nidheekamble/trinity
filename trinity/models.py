@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(30), nullable = False)
 	email = db.Column(db.String(50), unique = True, nullable = False)
+	#date = db.Column(db.String(30), unique = False, nullable = False)
 	type= db.Column(db.String(20), nullable=False)
 
 	def __repr__(self):

@@ -55,5 +55,6 @@ class UpdateDetails(FlaskForm):
 			raise ValidationError('Email taken, enter a different one')
 
 class FilterForm(FlaskForm):
-	dates = DateField(validators=[DataRequired()])
-	venue = StringField('Venue', validators = [DataRequired()])
+	date = DateField(validators=[DataRequired()], format='%d/%m/%Y')
+	#venue = StringField('Venue', validators = [DataRequired()])
+	submit = SubmitField('Show me')
