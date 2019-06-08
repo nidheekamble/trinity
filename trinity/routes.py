@@ -30,7 +30,7 @@ def regOrg():
 			s = s+a #sum of ASCIIs acts as the salt
 		hashed_password = (str)((hashlib.sha512((str(s).encode('utf-8'))+((form.password.data).encode('utf-8')))).hexdigest())
 	
-		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data, password = hashed_password)
+		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data, password = hashed_password, dateOrg = form.dateOrg.data, venueOrg = form.venueOrg.data)
 		organizer.type = 'organizer'
 		db.session.add(organizer)
 		db.session.commit()
@@ -77,7 +77,7 @@ def save_photo(form_photo):
 def regUser():
 	form = UserForm()
 	if form.validate_on_submit():
-		user = User(email=form.email.data, name=form.name.data, date='')
+		user = User(email=form.email.data, name=form.name.data)
 		user.type = 'user'
 		db.session.add(user)
 		db.session.commit()
@@ -115,9 +115,10 @@ def login():
 def find():
 	form = FilterForm()
 	if form.validate_on_submit():
-		date = form.date.data
-		#venue = form.venue.data
+		date = form.dateUser.data
+		venue = form.venueUser.data
 		print(date)
+		print(veune)
 		return redirect(url_for('filter'))
 	else:
 		print('Not validated')

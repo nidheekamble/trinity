@@ -19,8 +19,9 @@ class OrgForm(FlaskForm):
 	name = StringField('Name', validators = [DataRequired(), Length(max=30)])
 	email = StringField('Email', validators = [DataRequired(), Email()])
 	password = PasswordField('Password', validators=[DataRequired()])
-	types = [('0','Parties'), ('1', 'Wedding'), ('2', 'Corporate')]
-	kind = SelectField('Type', choices = types, validators = [Required()])
+	kind = SelectField('Type', choices = [('0','Parties'), ('1', 'Wedding'), ('2', 'Corporate')], validators = [Required()])
+	dateOrg = StringField('Date', validators=[DataRequired()])
+	venueOrg = SelectField('Venue', choices = [('0', 'Hall'),('1', 'Lawn'), ('2', 'Resort'), ('3', 'Custom Venue')], validators = [DataRequired()])
 	about = TextAreaField('About your organization', validators = [DataRequired()])
 	photo1 = FileField('Add picture of your services here',validators=[FileAllowed(['jpg', 'png'])])
 	photo2 = FileField('It gives the user a better preview',validators=[FileAllowed(['jpg', 'png'])])
@@ -41,8 +42,7 @@ class UpdateDetails(FlaskForm):
 	name = StringField('Name', validators = [DataRequired(), Length(max=30)])
 	email = StringField('Email', validators = [DataRequired(), Email()])
 	password = PasswordField('Password', validators=[DataRequired()])
-	types = [('0','Parties'), ('1', 'Wedding'), ('2', 'Corporate')]
-	kind = SelectField('Type', choices = types, validators = [Required()])
+	kind = SelectField('Type', choices = [('0','Parties'), ('1', 'Wedding'), ('2', 'Corporate')], validators = [Required()])
 	about = TextAreaField('About your organization', validators = [DataRequired()])
 	photo1 = FileField('Photo 1',validators=[FileAllowed(['jpg', 'png'])])
 	photo2 = FileField('Photo 2',validators=[FileAllowed(['jpg', 'png'])])
@@ -55,6 +55,6 @@ class UpdateDetails(FlaskForm):
 			raise ValidationError('Email taken, enter a different one')
 
 class FilterForm(FlaskForm):
-	date = DateField(validators=[DataRequired()], format='%d/%m/%Y')
-	#venue = StringField('Venue', validators = [DataRequired()])
+	dateUser = StringField('Date', validators=[DataRequired()])
+	venueUser = SelectField('Venue', choices = [('0', 'Hall'),('1', 'Lawn'), ('2', 'Resort'), ('3', 'Custom Venue')], validators = [DataRequired()])
 	submit = SubmitField('Show me')
