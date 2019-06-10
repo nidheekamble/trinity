@@ -29,8 +29,8 @@ class OrgForm(FlaskForm):
 	submit = SubmitField('Make Me Discoverable')
 
 	def validateEmail(self, Email):
-		user = User.query.filter_by(email=email.data).first()
-		if user:
+		org = Organizer.query.filter_by(email=email.data).first()
+		if org:
 			raise ValidationError('Email taken, enter a different one')
 
 class LoginForm(FlaskForm):
@@ -39,19 +39,21 @@ class LoginForm(FlaskForm):
 	submit = SubmitField('Log In')
 
 class UpdateDetails(FlaskForm):
-	name = StringField('Name', validators = [DataRequired(), Length(max=30)])
-	email = StringField('Email', validators = [DataRequired(), Email()])
-	password = PasswordField('Password', validators=[DataRequired()])
+	name = StringField('Name', validators = [Length(max=30)])
+	email = StringField('Email', validators = [Email()])
+	password = PasswordField('New Password')
 	kind = SelectField('Type', choices = [('0','Parties'), ('1', 'Wedding'), ('2', 'Corporate')], validators = [Required()])
-	about = TextAreaField('About your organization', validators = [DataRequired()])
+	dateOrg = StringField('Date')
+	venueOrg = SelectField('Venue', choices = [('0', 'Hall'),('1', 'Lawn'), ('2', 'Resort'), ('3', 'Custom Venue')])
+	about = TextAreaField('About your organization')
 	photo1 = FileField('Photo 1',validators=[FileAllowed(['jpg', 'png'])])
 	photo2 = FileField('Photo 2',validators=[FileAllowed(['jpg', 'png'])])
 	photo3 = FileField('Photo 3',validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Update details')
 
 	def validateEmail(self, Email):
-		user = User.query.filter_by(email=email.data).first()
-		if user:
+		org = Organizer.query.filter_by(email=email.data).first()
+		if org:
 			raise ValidationError('Email taken, enter a different one')
 
 class FilterForm(FlaskForm):

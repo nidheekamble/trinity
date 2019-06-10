@@ -8,7 +8,7 @@ from trinity.forms import UserForm, OrgForm, UpdateDetails, LoginForm, FilterFor
 from sqlalchemy import or_, and_
 from sqlalchemy.orm import Session
 from flask import Flask, session, render_template, url_for, flash, redirect, request, send_from_directory
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required, UserMixin
 from flask_bootstrap import Bootstrap
 from flask_datepicker import datepicker
 from PIL import Image
@@ -91,7 +91,7 @@ def login():
 	form = LoginForm(request.form)
 
 	if form.validate_on_submit():
-		organizer = Organizer.query.filter_by(id=current_user.id).first()
+		organizer = Organizer.query.filter_by(email=form.email.data).first()
 		pw = (form.password.data)
 		s = 0
 		for char in pw:
@@ -136,6 +136,7 @@ def filter():
 def account():
 	form = UpdateDetails()
 	organizer = Organizer.query.filter_by(id=current_user.id).first()
+	print(organizer)
 	if form.validate_on_submit():
 
 		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data)
@@ -158,7 +159,7 @@ def account():
 		db.session.commit()
 		print(organizer)
 		flash('Your account has been updated!', 'success')
-	return render_template("account.html", title='account', form=form)
+	return render_template("account.html", title='Account', form=form, organizer=organizer)
 
 @app.route("/logout")
 def logout():

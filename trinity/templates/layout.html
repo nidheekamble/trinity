@@ -60,7 +60,7 @@
               {% endfor %}
             {% endif %}
           {% endwith %}
-          {% block content %}{% endblock %}
+          {% block content %} {% endblock %}
         </div>
         {% if current_user.type == 'P' or current_user.type == 'S' %}
               <div class="col-md-3">
