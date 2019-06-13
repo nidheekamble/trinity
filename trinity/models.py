@@ -28,6 +28,7 @@ class Organizer(db.Model, UserMixin):
 	email = db.Column(db.String(30), unique = True, nullable = False)
 	kind = db.Column(db.String(30), unique = False, nullable=False)
 	type = db.Column(db.String(20), nullable=False)
+	about = db.Column(db.String(120), unique = False, nullable = False)
 	dateOrg = db.Column(db.String(10), unique = False, nullable = False)
 	venueOrg = db.Column(db.String(20), unique = False, nullable = False)
 	photo1 = db.Column(db.String(20), unique = False, default = 'default.jpg' , nullable= True )

@@ -30,7 +30,7 @@ def regOrg():
 			s = s+a #sum of ASCIIs acts as the salt
 		hashed_password = (str)((hashlib.sha512((str(s).encode('utf-8'))+((form.password.data).encode('utf-8')))).hexdigest())
 	
-		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data, password = hashed_password, dateOrg = form.dateOrg.data, venueOrg = form.venueOrg.data)
+		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data, password = hashed_password, dateOrg = form.dateOrg.data, venueOrg = form.venueOrg.data, about=form.about.data)
 		organizer.type = 'organizer'
 		db.session.add(organizer)
 		db.session.commit()
@@ -54,6 +54,7 @@ def regOrg():
 		print(organizer)
 
 		return redirect(url_for('login'))
+		
 	print('form not validated')
 	print(form.errors)
 	return render_template('organizer.html', title='Organizer', form=form)
@@ -134,32 +135,45 @@ def filter():
 @app.route("/account", methods = ['GET', 'POST'])
 @login_required
 def account():
-	form = UpdateDetails()
+	updateForm = UpdateDetails()
 	organizer = Organizer.query.filter_by(id=current_user.id).first()
 	print(organizer)
-	if form.validate_on_submit():
+	if updateForm.validate_on_submit():
 
-		organizer = Organizer(email=form.email.data, name=form.name.data, kind=form.kind.data)
+		organizer = Organizer(email=updateForm.email.data, name=updateForm.name.data, kind=updateForm.kind.data, venueOrg=updateForm.venueOrg.data, dateOrg=updateForm.dateOrg.data)
 		organizer.type = 'organizer'
 
-		if form.photo1.data:
-			photo_file = save_photo(form.photo1.data)
+		# IF ANY PHOTOS ARE UPDATED (Current)
+		if updateForm.photo1.data:
+			photo_file = save_photo(updateForm.photo1.data)
 			organizer.photo1 = photo_file
-			photo1 = url_for('static', filename='organizer/' + organizer.photo1)
-		if form.photo2.data:
-			photo_file = save_photo(form.photo2.data)
+		if updateForm.photo2.data:
+			photo_file = save_photo(updateForm.photo2.data)
 			organizer.photo1 = photo_file
-			photo2 = url_for('static', filename='organizer/' + organizer.photo2)
-		if form.photo3.data:
-			photo_file = save_photo(form.photo3.data)
+		if updateForm.photo3.data:
+			photo_file = save_photo(updateForm.photo3.data)
 			organizer.photo1 = photo_file
-			photo3 = url_for('static', filename='organizer/' + organizer.photo3)
 
-		db.session.add(organizer)
 		db.session.commit()
 		print(organizer)
 		flash('Your account has been updated!', 'success')
-	return render_template("account.html", title='Account', form=form, organizer=organizer)
+		return redirect(url_for('account'))
+
+	elif request.method == 'GET':
+		updateForm.email.data = organizer.email
+		updateForm.name.data = organizer.name
+		updateForm.kind.data = organizer.kind
+		organizer.type = 'organizer'
+		updateForm.about.data = organizer.about
+		updateForm.dateOrg.data = organizer.dateOrg
+		updateForm.venueOrg.data = organizer.venueOrg
+		print('Previous content loaded')
+	# OLD PHOTOS (registration)
+	photo1 = url_for('static', filename='organizer/' + organizer.photo1)
+	photo2 = url_for('static', filename='organizer/' + organizer.photo2)
+	photo3 = url_for('static', filename='organizer/' + organizer.photo3)
+
+	return render_template("account.html", title='Account', form=updateForm, organizer=organizer, photo1=photo1, photo2=photo2, photo3=photo3)
 
 @app.route("/logout")
 def logout():

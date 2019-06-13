@@ -2,24 +2,22 @@
 {% block content %}
       <div class="row valign wrapper">
         <div class="col s2">
-            <img class="circle responive-img account-img" src="{{ organizer.photo1 }}">
-            <img class="circle responive-img account-img" src="{{ organizer.photo2 }}">
-            <img class="circle responive-img account-img" src="{{ organizer.photo3 }}">
+            <img class="circle responive-img account-img" src="{{ photo1 }}">
+            <img class="circle responive-img account-img" src="{{ photo2 }}">
+            <img class="circle responive-img account-img" src="{{ photo3 }}">
         </div>
         <div class="col s10">
-          <h3 class="account-heading amber-text"><b>Welcome,</b>{{ current_user.name }}<br>
+          <h3 class="account-heading black-text"><b>Welcome, </b>{{ current_user.name }}<br>
         </div>
       </div>
 
-    <div class = "dim card transparent hoverable col s12">
+    <div class = "dim card amber accent-2 hoverable col s12">
         <form method="POST" action="/account" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <h4 class="pink-text darken-3"><b>Account Info</b></h4>
-                {{photo1}}
-
+                <h4 class="brown-text-text darken-1"><b>Account Info</b></h4>
                 <div class="form-group">
-                    <h5 class = "pink-text darken-4">Is this username fine?</h5>
+                    <h5 class = "brown-text darken-1">Is this username fine?</h5>
                     {% if form.name.errors %}
                         {{ form.name(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -33,7 +31,7 @@
                 </div>
 
                 <div class="form-group">
-                    <h5 class = "pink-text darken-4">Email</h5>
+                    <h5 class = "brown-text darken-1">Email</h5>
                     {% if form.email.errors %}
                         {{ form.email(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -47,7 +45,7 @@
                 </div>
 
                 <div class="form-group">
-                    <h5 class = "black-text">Kind</h5>
+                    <h5 class = "brown-text">Kind</h5>
                     {% if form.kind.errors %}
                         {{ form.kind(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -60,10 +58,10 @@
                     {% endif %}
                 </div>
 
-                <hr><br>
+                <hr>
 
                 <div class="form-group">
-                    <h5 class = "pink-text darken-4">Update your gallery</h5>
+                    <h5 class = "brown-text darken-1">Update your gallery</h5>
                     {{ form.photo1(class="form-control-file") }}
                     {% if form.photo1.errors %}
                         {% for error in form.photo1.errors %}
@@ -86,10 +84,10 @@
                     {% endif %}
                 </div>
 
-                <hr><br>
+                <hr>
 
                 <div class="form-group">
-                    <h5 class = "pink-text darken-4">About</h5>
+                    <h5 class = "brown-text darken-1">About</h5>
                     {% if form.about.errors %}
                         {{ form.about(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -103,8 +101,8 @@
                 </div>
 
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }}
+            <div class="form-group valign center-align">
+                <b> {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large brown darken-1 white-text") }} </b>
             </div>
         </form>
     </div>
