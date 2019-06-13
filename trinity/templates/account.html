@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
+<hr>
       <div class="row valign wrapper">
-        <div class="col s2">
-            <img class="circle responive-img account-img" src="{{ photo1 }}">
-            <img class="circle responive-img account-img" src="{{ photo2 }}">
-            <img class="circle responive-img account-img" src="{{ photo3 }}">
+        <div class="col s6">
+            <a href = "{{ url_for('static', filename='organizer/' + organizer.photo1) }}"> <img class="circle responive-img account-img" src="{{ photo1 }}"> </a>
+            <a href = "{{ url_for('static', filename='organizer/' + organizer.photo2) }}"> <img class="circle responive-img account-img" src="{{ photo2 }}"> </a>
+            <a href = "{{ url_for('static', filename='organizer/' + organizer.photo3) }}"> <img class="circle responive-img account-img" src="{{ photo3 }}"> </a>
         </div>
-        <div class="col s10">
+        <div class="col s4">
           <h3 class="account-heading black-text"><b>Welcome, </b>{{ current_user.name }}<br>
         </div>
       </div>

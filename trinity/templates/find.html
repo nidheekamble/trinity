@@ -9,7 +9,7 @@
 <div>
 	<form method="POST" action="/find" enctype="multipart/form-data">
 		<div class = "filter right-align">
-			<h3 class="card"><span class="black-text cyan center-align"><b>FILTER</b> </span></h2>
+			<h4 class="card brown "><span class="white-text center-align"> Filters </span></h4>
 			<div class = "amber lighten-1 col s3 hoverable">
 				<h5><b><span class = "black-text center-align"> Date </span></b></h5>
 				{% if form.dateUser.errors %}
@@ -56,7 +56,19 @@
 	</form>
 
 	<div class = "col s9">
-		row wala
+		{% if orgList != []: %}
+			{% for org in orgList: %}
+			{
+				{{ org[0] }} <br>
+				{{ org[1] }} <br>
+				{{ org[2] }} <br>
+				{{ org[3] }} <br>
+				{{ org[4] }} <br>
+			}
+			{% endfor %}
+		{% else %}
+			<b> No matching organizers found :( </b>
+		{% endif %}
 	</div>
 </div>
 

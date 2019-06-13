@@ -54,7 +54,7 @@ def regOrg():
 		print(organizer)
 
 		return redirect(url_for('login'))
-		
+
 	print('form not validated')
 	print(form.errors)
 	return render_template('organizer.html', title='Organizer', form=form)
@@ -129,8 +129,23 @@ def find():
 @app.route("/filter", methods = ['GET', 'POST'])
 def filter():
 	form = FilterForm()
+	date = form.dateUser.data
+	venue = form.venueUser.data
+	user = User.query.filter_by(id=current_user.id).first()
+
+	filteredOrg = Organizer.query.filter_by(dateOrg=date, venueOrg=venue).all()
+	orgList = []
+
+	for org in orgList:
+		org_data = [org.name, org.kind, org.dateOrg, org.venueOrg, org.about]
+		orgList.append(org_data)
+
+	print(orgList)
+	num = len(orgList)
+	print(num)
+
 	print('in filter')
-	return render_template('home.html')
+	return render_template('find.html', title='Find', orgList=orgList, num=num, form=form)
 
 @app.route("/account", methods = ['GET', 'POST'])
 @login_required
