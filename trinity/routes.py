@@ -83,8 +83,11 @@ def regUser():
 		db.session.add(user)
 		db.session.commit()
 		print(user)
-
 		return redirect(url_for('find'))
+	elif request.method == 'GET':
+		user = User.query.filter_by(id=current_user.id).first()
+		form.email.data = user.email
+		form.name.data = user.name
 	return render_template('user.html', title='User', form=form)
 
 @app.route("/login", methods = ['GET','POST'])
@@ -132,6 +135,9 @@ def filter():
 	date = form.dateUser.data
 	venue = form.venueUser.data
 	user = User.query.filter_by(id=current_user.id).first()
+	user.dateUser = date
+	user.venueUser = venue
+	db.session.commit()
 
 	filteredOrg = Organizer.query.filter_by(dateOrg=date, venueOrg=venue).all()
 	orgList = []
@@ -145,6 +151,8 @@ def filter():
 	print(num)
 
 	print('in filter')
+	if(num!=0):
+		filSub = 1
 	return render_template('find.html', title='Find', orgList=orgList, num=num, form=form)
 
 @app.route("/account", methods = ['GET', 'POST'])

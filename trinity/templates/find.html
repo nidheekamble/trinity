@@ -5,11 +5,19 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
 </head>
+<br>
 
+<div class="pg">
+		<ul class="pagination center-align col s12 row">
+		<li class="btn-small btn-flat amber lighten-4 waves-effect"><a href= "{{url_for('regUser')}}">Your details</a></li>
+		<li class="btn-small btn-flat amber active">Find organizers</li>
+		<li class="btn-small btn-flat disabled">View profiles</li>
+		<li class="btn-small btn-flat disabled">Shortlist</li>
+		</ul>
+</div>
 <div>
 	<form method="POST" action="/find" enctype="multipart/form-data">
 		<div class = "filter right-align">
-			<h4 class="card brown "><span class="white-text center-align"> Filters </span></h4>
 			<div class = "amber lighten-1 col s3 hoverable">
 				<h5><b><span class = "black-text center-align"> Date </span></b></h5>
 				{% if form.dateUser.errors %}

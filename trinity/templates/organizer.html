@@ -4,11 +4,11 @@
 		<form method="POST" action="/organizer" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 			<fieldset class="form-group">
-				<h3 class="amber-text"><b>Organizer</b></h3>
+				<h3 class="brown-text darken-2"><b>Organizer</b></h3>
 				<hr>
 
 				<div class="form-group">
-					{{ form.name.label(class="form-control-label") }}
+					<h5> {{ form.name.label(class="black-text") }} </h5>
 					{% if form.name.errors %}
 						{{ form.name(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="form-group">
-					{{ form.about.label(class="form-control-label") }}
+					<h5> {{ form.about.label(class="black-text form-control-label") }} </h5>
 					{% if form.about.errors %}
 						{{ form.about(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -36,7 +36,7 @@
 				</div>
 
 				<div class="form-group white-text">
-					{{ form.email.label(class="form-control-label") }}
+					<h5> {{ form.email.label(class="black-text form-control-label") }} </h5>
 					{% if form.email.errors %}
 						{{ form.email(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -45,12 +45,12 @@
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.email(class="form-control form-control-lg") }}
+						{{ form.email(class="black-text form-control form-control-lg") }}
 					{% endif %}
 				</div>
 
 				<div class="form-group white-text">
-					{{ form.venueOrg.label(class="form-control-label") }}
+					<h5> {{ form.venueOrg.label(class="black-text form-control-label") }} </h5>
 					{% if form.venueOrg.errors %}
 						{{ form.venueOrg(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -64,7 +64,7 @@
 				</div>
 
 				<div class="form-group white-text">
-					{{ form.dateOrg.label(class="form-control-label") }}
+					<h5> {{ form.dateOrg.label(class="form-control-label") }} </h5>
 					{% if form.dateOrg.errors %}
 						{{ form.dateOrg(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -78,7 +78,7 @@
 				</div>
 
 				<div class="form-group">
-					{{ form.password.label(class="form-control-label") }}
+					<h5> {{ form.password.label(class="black-text form-control-label") }} </h5>
 					{% if form.password.errors %}
 						{{ form.password(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -92,7 +92,7 @@
 				</div>
 
 				<div class="form-group">
-					{{ form.kind.label(class="form-control-label") }}
+					<h5> {{ form.kind.label(class="black-text form-control-label") }} </h5>
 					{% if form.kind.errors %}
 						{{ form.kind(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -108,7 +108,7 @@
 				<hr>
 
 				<div class="form-group">
-					{{ form.photo1.label(class="form-control-label") }}
+					<h6> {{ form.photo1.label(class="black-text form-control-label") }} </h6>
 					{% if form.photo1.errors %}
 						{{ form.photo1(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -122,7 +122,7 @@
 				</div>
 
 				<div class="form-group">
-					{{ form.photo2.label(class="form-control-label") }}
+					<h6> {{ form.photo2.label(class="black-text form-control-label") }} </h6>
 					{% if form.photo2.errors %}
 						{{ form.photo2(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -136,7 +136,7 @@
 				</div>
 
 				<div class="form-group">
-					{{ form.photo3.label(class="form-control-label") }}
+					<h6> {{ form.photo3.label(class="black-text form-control-label") }} </h6>
 					{% if form.photo3.errors %}
 						{{ form.photo3(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -150,7 +150,7 @@
 				</div>
 
 			<div class="form-group">
-				{{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }}
+				{{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber black-text") }}
 			</div>
 
 			<small class="text-muted">
