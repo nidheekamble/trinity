@@ -146,13 +146,12 @@ def filter():
 		org_data = [org.name, org.kind, org.dateOrg, org.venueOrg, org.about]
 		orgList.append(org_data)
 
+	print("orgList\n")
 	print(orgList)
 	num = len(orgList)
 	print(num)
 
 	print('in filter')
-	if(num!=0):
-		filSub = 1
 	return render_template('find.html', title='Find', orgList=orgList, num=num, form=form)
 
 @app.route("/account", methods = ['GET', 'POST'])

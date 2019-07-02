@@ -48,15 +48,6 @@
 			</div>
 			<hr>
 			
-			<hr>
-			<div class = "amber lighten-1 col s3 hoverable">
-				<span class = "black-text center-align"><b> Range </b></span>
-			</div>
-			<hr>
-			<div class = "amber lighten-1 col s3 hoverable">
-				<h5><span class = "black-text center-align"><b>Another Filter </b></span></h5>
-			</div>
-			<hr>
 			<div class="col s3 form-group center-align">
 				<a href = "{{url_for('filter')}}"> {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }} </a>
 			</div>
@@ -65,9 +56,10 @@
 
 	<div class = "col s9">
 		{% if orgList != []: %}
+			<h4><b> These organizers match your criteria </b></h4>
 			{% for org in orgList: %}
 			{
-				{{ org[0] }} <br>
+				<h6> {{ org[0] }} </h6><b><br>
 				{{ org[1] }} <br>
 				{{ org[2] }} <br>
 				{{ org[3] }} <br>
@@ -75,14 +67,11 @@
 			}
 			{% endfor %}
 		{% else %}
-			<b> No matching organizers found :( </b>
+			<h4> No matching organizers found :( </h4>
 		{% endif %}
 	</div>
 </div>
 
-<div>
-	blah blah
-</div>
 
 <script src="script.js"></script>
 
