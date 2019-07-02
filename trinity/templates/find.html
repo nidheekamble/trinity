@@ -49,7 +49,7 @@
 			<hr>
 			
 			<div class="col s3 form-group center-align">
-				<a href = "{{url_for('filter')}}"> {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }} </a>
+				<a href = "{{url_for('find')}}"> {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }} </a>
 			</div>
 		</div>
 	</form>
@@ -59,11 +59,12 @@
 			<h4><b> These organizers match your criteria </b></h4>
 			{% for org in orgList: %}
 			{
-				<h6> {{ org[0] }} </h6><b><br>
-				{{ org[1] }} <br>
-				{{ org[2] }} <br>
-				{{ org[3] }} <br>
-				{{ org[4] }} <br>
+				<h6> {{ org.name }} </h6><b><br>
+				{{ org.kind }} <br>
+				{{ org.dateOrg }} <br>
+				{{ org.venueOrg }} <br> 
+				{{ org.about }} <br>
+				<hr>
 			}
 			{% endfor %}
 		{% else %}

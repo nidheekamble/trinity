@@ -84,10 +84,10 @@ def regUser():
 		db.session.commit()
 		print(user)
 		return redirect(url_for('find'))
-	elif request.method == 'GET':
-		user = User.query.filter_by(id=current_user.id).first()
-		form.email.data = user.email
-		form.name.data = user.name
+	# elif request.method == 'GET':
+	# 	user = User.query.filter_by(id=current_user.id).first()
+	# 	form.email.data = user.email
+	# 	form.name.data = user.name
 	return render_template('user.html', title='User', form=form)
 
 @app.route("/login", methods = ['GET','POST'])
@@ -119,40 +119,27 @@ def login():
 def find():
 	form = FilterForm()
 	if form.validate_on_submit():
-		date = form.dateUser.data
-		venue = form.venueUser.data
-		print(date)
-		print(veune)
-		return redirect(url_for('filter'))
+		orgList = Organizer.query.filter_by(dateOrg=form.dateUser.data, venueOrg=form.venueUser.data).all()
+
+		print("orgList\n")
+		print(orgList)
+
+		user = User.query.filter_by(id=current_user.id).first()
+		user.dateUser = form.dateUser.data
+		user.venueUser = form.venueUser.data
+		db.session.commit()
+
+		print("User")
+		print(user)
+
+		print('in filter')
+		return render_template('find.html', title='Find', orgList=orgList, form=form)
+
 	else:
 		print('Not validated')
 
 	return render_template('find.html', title='Find', form=form)
 
-@app.route("/filter", methods = ['GET', 'POST'])
-def filter():
-	form = FilterForm()
-	date = form.dateUser.data
-	venue = form.venueUser.data
-	user = User.query.filter_by(id=current_user.id).first()
-	user.dateUser = date
-	user.venueUser = venue
-	db.session.commit()
-
-	filteredOrg = Organizer.query.filter_by(dateOrg=date, venueOrg=venue).all()
-	orgList = []
-
-	for org in orgList:
-		org_data = [org.name, org.kind, org.dateOrg, org.venueOrg, org.about]
-		orgList.append(org_data)
-
-	print("orgList\n")
-	print(orgList)
-	num = len(orgList)
-	print(num)
-
-	print('in filter')
-	return render_template('find.html', title='Find', orgList=orgList, num=num, form=form)
 
 @app.route("/account", methods = ['GET', 'POST'])
 @login_required

@@ -37,4 +37,4 @@ class Organizer(db.Model, UserMixin):
 	password = db.Column(db.String(128), unique = False, nullable = False)
 
 	def __repr__(self):
-		return f"Organizer('{self.id}', '{self.email}', '{self.kind}', '{self.type}', '{self.dateOrg}', '{self.venueOrg}'')"
+		return f"Organizer('{self.id}', '{self.email}', '{self.kind}', '{self.type}', '{self.dateOrg}', '{self.venueOrg}')"
