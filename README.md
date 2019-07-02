@@ -18,13 +18,13 @@ MAINTAINERS
 The repository where this `README` resides (https://github.com/nidheekamble/trinity) is contributed to and maintained by: <br>
 Ms. Nidhee Kamble (@nidheekamble) <br>
 <br>
-The contributors and maintainers of original repository can be found at: https://github.com/pal-16/trinity
+The contributors and maintainers of original repository can be found at: https://github.com/pal-16/event
 <br>
 
 
 CONTEXT
 -------
-The project at https://github.com/pal-16/trinity was developed under *Inheritance* 2019, a Summer Mentorship Programme under *Community of Coders*, VJTI. <br>
+The project at https://github.com/pal-16/event was developed under *Inheritance* 2019, a Summer Mentorship Programme under *Community of Coders*, VJTI. <br>
 The team of contributors to the original repository was assigned a mentor for the project. 
 <br>
 
