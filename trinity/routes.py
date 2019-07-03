@@ -184,6 +184,14 @@ def account():
 
 	return render_template("account.html", title='Account', form=updateForm, organizer=organizer, photo1=photo1, photo2=photo2, photo3=photo3)
 
+
+@app.route("/viewOrganizer/<org_id>", methods = ['GET', 'POST'])
+def user2_account(org_id):
+
+	organizer = Organizer.query.filter_by(id = org_id).first()
+	return render_template('viewOrgAccount.html', title='Organizer Account', organizer=organizer)
+
+
 @app.route("/logout")
 def logout():
 	logout_user()

@@ -16,6 +16,24 @@
 		</ul>
 </div>
 <div>
+	<div class = "col s12">
+		{% if orgList != []: %}
+			<h4><b> These organizers match your criteria: </b></h4>
+			{% for org in orgList: %}
+			{
+				<h6> {{ org.name }} </h6><b><br>
+				{{ org.kind }} <br>
+				{{ org.dateOrg }} <br>
+				{{ org.venueOrg }} <br> 
+				{{ org.about }} <br>
+				<hr>
+			}
+			{% endfor %}
+		{% else %}
+			<h4> No matching organizers found :( </h4>
+		{% endif %}
+	</div>
+
 	<form method="POST" action="/find" enctype="multipart/form-data">
 		<div class = "filter right-align">
 			<div class = "amber lighten-1 col s3 hoverable">
@@ -54,23 +72,6 @@
 		</div>
 	</form>
 
-	<div class = "col s9">
-		{% if orgList != []: %}
-			<h4><b> These organizers match your criteria </b></h4>
-			{% for org in orgList: %}
-			{
-				<h6> {{ org.name }} </h6><b><br>
-				{{ org.kind }} <br>
-				{{ org.dateOrg }} <br>
-				{{ org.venueOrg }} <br> 
-				{{ org.about }} <br>
-				<hr>
-			}
-			{% endfor %}
-		{% else %}
-			<h4> No matching organizers found :( </h4>
-		{% endif %}
-	</div>
 </div>
 
 

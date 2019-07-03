@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<hr>
+      <div class="row valign wrapper">
+        <div class="col s6">
+            <a href = "{{ url_for('static', filename='organizer/' + organizer.photo1) }}"> <img class="circle responive-img account-img" src="{{ photo1 }}"> </a>
+            <a href = "{{ url_for('static', filename='organizer/' + organizer.photo2) }}"> <img class="circle responive-img account-img" src="{{ photo2 }}"> </a>
+            <a href = "{{ url_for('static', filename='organizer/' + organizer.photo3) }}"> <img class="circle responive-img account-img" src="{{ photo3 }}"> </a>
+        </div>
+        <div class="col s4">
+          <h3 class="account-heading black-text"><b>Welcome, </b>{{ current_user.name }}<br>
+        </div>
+      </div>
+
+    <div class = "dim card amber accent-2 hoverable col s12">
+        <fieldset class="form-group">
+            <h4 class="brown-text-text darken-1"><b>Account Info: {{ organizer.name }}</b></h4>
+            <hr>
+            <br>
+            <div class="form-group">
+                <h5 class = "brown-text darken-1"><b>Name</b></h5>
+               {{ organizer.name }}
+           </div>
+            <br>
+
+            <div class="form-group">
+                <h5 class = "brown-text darken-1"><b>Email</b></h5>
+                {{ organizer.email }}
+            </div>
+            <br>
+
+            <div class="form-group">
+                <h5 class = "brown-text"><b>Kind</b></h5>
+                {{ organizer.kind }}
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <h5 class = "brown-text darken-1"><b>About {{ organizer.name }}</b></h5>
+               {{ organizer.about }}
+            </div>
+
+        </fieldset>
+    </div>
+{% endblock content %}
