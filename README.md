@@ -1,5 +1,5 @@
 # ManagEvent
-*forked from pal-16/trinity*
+*forked from pal-16/event*
 
 **Forked on:** 03/06/19 <br>
 **Contents of original repository while forking:** `README.md`; no content
